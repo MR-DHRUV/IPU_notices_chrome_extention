@@ -160,7 +160,7 @@ const App = () => {
 
   useEffect(() => {
 
-    // notify();
+    notify();
 
 
   }, [])
