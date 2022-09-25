@@ -30,7 +30,7 @@ const App = () => {
 
     console.log(email);
 
-    const response = await fetch('http://localhost:5000/notifyme', {
+    const response = await fetch('https://api-ipuns-mrdhruv.azurewebsites.net/notifyme', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -57,7 +57,7 @@ const App = () => {
 
   const getAll = async () => {
 
-    const response = await fetch('http://localhost:5000/', {
+    const response = await fetch('https://api-ipuns-mrdhruv.azurewebsites.net/', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -85,7 +85,7 @@ const App = () => {
 
   const getUSS = async (link) => {
 
-    const response = await fetch('http://localhost:5000/url', {
+    const response = await fetch('https://api-ipuns-mrdhruv.azurewebsites.net/url', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -181,22 +181,28 @@ const App = () => {
       <Notifications />
       <nav className='d-flex flex-row justify-content-between border-bottom p-2 bg-theme'>
         <img src="http://ipu.ac.in/style/head_foot_img/220px-usemGuru_Gobind_Singh_Indraprastha_University12.png" alt="" height={32} />
-        <div class="dropdown">
-          <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Select USS
-          </button>
-          <ul class="dropdown-menu py-0">
-            <li><button className='btn btn-light w-100' onClick={usict}>USICT</button></li>
-            <li><button className='btn btn-light w-100' onClick={usms}>USMS</button></li>
-            <li><button className='btn btn-light w-100' onClick={usct}>USCT</button></li>
-            <li><button className='btn btn-light w-100' onClick={usbt}>USBT</button></li>
-            <li><button className='btn btn-light w-100' onClick={usbas}>USBAS</button></li>
-            <li><button className='btn btn-light w-100' onClick={uslls}>USLLS</button></li>
-            <li><button className='btn btn-light w-100' onClick={usap}>USAP</button></li>
-            {/* <li><button onClick={usmphs}>USMPHS</button></li> */}
-            <li><button className='btn btn-light w-100' onClick={usmc}>USMC</button></li>
-          </ul>
+
+        <div className="d-flex flex-row">
+
+          <div class="dropdown">
+            <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Select USS
+            </button>
+
+            <ul class="dropdown-menu py-0">
+              <li><button className='btn btn-light w-100' onClick={usict}>USICT</button></li>
+              <li><button className='btn btn-light w-100' onClick={usms}>USMS</button></li>
+              <li><button className='btn btn-light w-100' onClick={usct}>USCT</button></li>
+              <li><button className='btn btn-light w-100' onClick={usbt}>USBT</button></li>
+              <li><button className='btn btn-light w-100' onClick={usbas}>USBAS</button></li>
+              <li><button className='btn btn-light w-100' onClick={uslls}>USLLS</button></li>
+              <li><button className='btn btn-light w-100' onClick={usap}>USAP</button></li>
+              {/* <li><button onClick={usmphs}>USMPHS</button></li> */}
+              <li><button className='btn btn-light w-100' onClick={usmc}>USMC</button></li>
+            </ul>
+          </div>
         </div>
+
       </nav>
 
       <div className="container py-4">
@@ -243,13 +249,14 @@ const App = () => {
           </div>}
         </div>
 
-        <form className="user" onSubmit={handleSubmit}>
+        <div className='mt-4'>
+          <h6>Subscribe to email updates :</h6>
+          <form className="d-flex flex-row align-items-center me-3" onSubmit={handleSubmit}>
+            <div className="theme"><input className="form-control form-control-user w-100 theme" placeholder='Email Address' name='email' required minLength={8} value={email} onChange={onChange} type="email" id="exampleInputEmail" aria-describedby="emailHelp" /></div>
+            <button disabled={email.length < 8} className="btn btn-primary bg-theme ms-3" type="submit">Subscribe</button>
+          </form>
+        </div>
 
-          <div className="mb-3"><input className="form-control form-control-user w-25" placeholder='Email Address' name='email' required minLength={8} value={email} onChange={onChange} type="email" id="exampleInputEmail" aria-describedby="emailHelp" /></div>
-
-          <button disabled={email.length < 8} className="btn btn-primary d-block btn-user" type="submit">Subscribe</button>
-
-        </form>
 
       </div>
     </div>
